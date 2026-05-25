@@ -15,69 +15,52 @@ Step 7:Predict the output for test data.<BR>
 Step 8:Calculate accuracy and display classification report.<BR>
 Step 9:Print the result.<BR>
 <H3>Program: </H3>
-# Breast Cancer Detection using MLP (Multi-Layer Perceptron)
-# Dataset: Breast Cancer Wisconsin Dataset
+# Breast Cancer Detection using MLP (Multi-Layer Perceptron)<BR>
+# Dataset: Breast Cancer Wisconsin Dataset<BR>
 
-# Import required libraries
-import pandas as pd
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import pandas as pd<BR>
+from sklearn.datasets import load_breast_cancer<BR>
+from sklearn.model_selection import train_test_split<BR>
+from sklearn.preprocessing import StandardScaler<BR>
+from sklearn.neural_network import MLPClassifier<BR>
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix<BR>
 
-# Load dataset
-data = load_breast_cancer()
+data = load_breast_cancer()<BR>
 
-# Features and target
-X = data.data
-y = data.target
+X = data.data<BR>
+y = data.target<BR>
 
-# Split dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+X_train, X_test, y_train, y_test = train_test_split(<BR>
+    X, y, test_size=0.2, random_state=42<BR>
+)<BR>
 
-# Feature scaling
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+scaler = StandardScaler()<BR>
+X_train = scaler.fit_transform(X_train)<BR>
+X_test = scaler.transform(X_test)<BR>
 
-# Create MLP model
-mlp = MLPClassifier(
-    hidden_layer_sizes=(100, 50),   # Two hidden layers
-    max_iter=1000,
-    learning_rate_init=0.001,
-    random_state=42
-)
+mlp = MLPClassifier(<BR>
+    hidden_layer_sizes=(100, 50),<BR>
+    max_iter=1000,<BR>
+    learning_rate_init=0.001,<BR>
+    random_state=42<BR>
+)<BR>
 
-# Train the model
-mlp.fit(X_train, y_train)
+mlp.fit(X_train, y_train)<BR>
 
-# Predict on test data
-y_pred = mlp.predict(X_test)
 
-# Evaluate the model
-accuracy = accuracy_score(y_test, y_pred)
+y_pred = mlp.predict(X_test)<BR>
 
-print("Breast Cancer Detection using MLP")
-print("----------------------------------")
-print("Accuracy:", accuracy)
+accuracy = accuracy_score(y_test, y_pred)<BR>
 
-print("\nConfusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+print("Breast Cancer Detection using MLP")<BR>
+print("----------------------------------")<BR>
+print("Accuracy:", accuracy)<BR>
 
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
+print("\nConfusion Matrix:")<BR>
+print(confusion_matrix(y_test, y_pred))<BR>
 
-# Example prediction
-sample = X_test[0].reshape(1, -1)
-prediction = mlp.predict(sample)
-
-if prediction[0] == 1:
-    print("\nPrediction: Benign (Non-Cancerous)")
-else:
-    print("\nPrediction: Malignant (Cancerous)")
+print("\nClassification Report:")<BR>
+print(classification_report(y_test, y_pred))<BR>
 <H3>Output:</H3>
 
 <img width="1296" height="744" alt="image" src="https://github.com/user-attachments/assets/4adcb5e2-1f85-4920-841c-f132acbcde37" />
