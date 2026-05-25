@@ -15,61 +15,72 @@ Step 7:Predict the output for test data.<BR>
 Step 8:Calculate accuracy and display classification report.<BR>
 Step 9:Print the result.<BR>
 <H3>Program: </H3>
-```
 # Breast Cancer Detection using MLP (Multi-Layer Perceptron)
 # Dataset: Breast Cancer Wisconsin Dataset
+
 # Import required libraries
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score, classification_report, 
-confusion_matrix
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
 # Load dataset
 data = load_breast_cancer()
+
 # Features and target
 X = data.data
 y = data.target
+
 # Split dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
+
 # Feature scaling
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
+
 # Create MLP model
 mlp = MLPClassifier(
-    hidden_layer_sizes=(100, 50),  # Two hidden layers
+    hidden_layer_sizes=(100, 50),   # Two hidden layers
     max_iter=1000,
     learning_rate_init=0.001,
     random_state=42
 )
+
 # Train the model
 mlp.fit(X_train, y_train)
+
 # Predict on test data
 y_pred = mlp.predict(X_test)
+
 # Evaluate the model
 accuracy = accuracy_score(y_test, y_pred)
+
 print("Breast Cancer Detection using MLP")
 print("----------------------------------")
 print("Accuracy:", accuracy)
+
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
+
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
+
 # Example prediction
 sample = X_test[0].reshape(1, -1)
 prediction = mlp.predict(sample)
+
 if prediction[0] == 1:
     print("\nPrediction: Benign (Non-Cancerous)")
 else:
     print("\nPrediction: Malignant (Cancerous)")
-```
 <H3>Output:</H3>
 
-<img width="575" height="395" alt="image" src="https://github.com/user-attachments/assets/63338137-ebf2-41ae-95a3-4dbe76d22885" />
+<img width="1296" height="744" alt="image" src="https://github.com/user-attachments/assets/4adcb5e2-1f85-4920-841c-f132acbcde37" />
 
 
 <H3>Results:</H3>
